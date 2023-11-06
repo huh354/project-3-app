@@ -7,6 +7,15 @@
   <meta name="Description" content="TV Station application">
   <base href="/">
 
+  <script>
+    window.__appCDN = "https://cdn.webcomponents.psu.edu/cdn/";
+  </script>
+  <script src="https://cdn.webcomponents.psu.edu/cdn/build.js"></script>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.11.2/cdn/themes/light.css" />
+<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.11.2/cdn/shoelace-autoloader.js"></script>
+
+
   <style>
     html,
     body {
@@ -25,6 +34,12 @@
 </head>
 
 <body>
+  <relative-heading id="lorem">
+    <h1>TEST</h1>
+  </relative-heading>
+
+  <sl-button>TEST BUTTON</sl-button>
+
   <tv-app name="HAX:TV"></tv-app>
   <h3>Demo of each element by itself</h3>
   <tv-channel title="HAX: Wordpress Killer" presenter="Bryan Ollendyke">

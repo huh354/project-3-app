@@ -54,6 +54,10 @@ export class TvApp extends LitElement {
       }
       <div>
         <!-- video -->
+        <p>TEST VIDEO</p>
+        <iframe width="500" height="400"
+        src="https://youtu.be/QJMBhXjtaYU">
+      </iframe>
         <!-- discord / chat - optional -->
       </div>
       <!-- dialog -->
