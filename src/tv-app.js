@@ -2,6 +2,11 @@
 import { LitElement, html, css } from 'lit';
 import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
+import "@lrnwebcomponents/simple-icon/lib/simple-icon-button-lite.js";
+import "@lrnwebcomponents/simple-icon/lib/simple-icon-lite.js";
+import "@lrnwebcomponents/simple-icon/lib/simple-icons.js";
+import "@lrnwebcomponents/hax-iconset/lib/simple-hax-iconset.js";
+import "@lrnwebcomponents/video-player/video-player.js";
 import "./tv-channel.js";
 
 export class TvApp extends LitElement {
@@ -11,6 +16,11 @@ export class TvApp extends LitElement {
     this.name = '';
     this.source = new URL('../assets/channels.json', import.meta.url).href;
     this.listings = [];
+    this.activeItem = {
+      title: null,
+      id: null,
+      description: null,
+    };
   }
   // convention I enjoy using to define the tag's name
   static get tag() {
@@ -22,6 +32,7 @@ export class TvApp extends LitElement {
       name: { type: String },
       source: { type: String },
       listings: { type: Array },
+      activeItem: { type: Object }
     };
   }
   // LitElement convention for applying styles JUST to our element
@@ -43,9 +54,11 @@ export class TvApp extends LitElement {
       ${
         this.listings.map(
           (item) => html`
-            <tv-channel 
+            <tv-channel
+              id="${item.id}"
               title="${item.title}"
               presenter="${item.metadata.author}"
+              description="${item.description}"
               @click="${this.itemClick}"
             >
             </tv-channel>
@@ -53,16 +66,16 @@ export class TvApp extends LitElement {
         )
       }
       <div>
+      ${this.activeItem.name}
+      ${this.activeItem.description}
         <!-- video -->
-        <p>TEST VIDEO</p>
-        <iframe width="500" height="400"
-        src="https://youtu.be/QJMBhXjtaYU">
-      </iframe>
+        <video-player source="https://youtu.be/QJMBhXjtaYU" accent-color="red" dark track="https://haxtheweb.org/files/HAXshort.vtt">
+</video-player>
         <!-- discord / chat - optional -->
       </div>
       <!-- dialog -->
       <sl-dialog label="Dialog" class="dialog">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      ${this.activeItem.title}
         <sl-button slot="footer" variant="primary" @click="${this.closeDialog}">Close</sl-button>
       </sl-dialog>
     `;
@@ -75,6 +88,11 @@ export class TvApp extends LitElement {
 
   itemClick(e) {
     console.log(e.target);
+    this.activeItem = {
+      title: e.target.title,
+      id: e.target.id,
+      description: e.target.description,
+    };
     const dialog = this.shadowRoot.querySelector('.dialog');
     dialog.show();
   }
@@ -95,6 +113,7 @@ export class TvApp extends LitElement {
     await fetch(source).then((resp) => resp.ok ? resp.json() : []).then((responseData) => {
       if (responseData.status === 200 && responseData.data.items && responseData.data.items.length > 0) {
         this.listings = [...responseData.data.items];
+        console.log(this.listings);
       }
     });
   }
