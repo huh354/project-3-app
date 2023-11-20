@@ -69,8 +69,16 @@ export class TvApp extends LitElement {
       ${this.activeItem.name}
       ${this.activeItem.description}
         <!-- video -->
-        <video-player source="https://youtu.be/QJMBhXjtaYU" accent-color="red" dark track="https://haxtheweb.org/files/HAXshort.vtt">
-</video-player>
+        
+      <div style="width: 1000px; height: 400px;">
+        <video-player 
+          source="https://youtu.be/QJMBhXjtaYU" 
+          accent-color="red" 
+          dark 
+          track="https://haxtheweb.org/files/HAXshort.vtt"
+        >
+        </video-player>
+      </div>
         <!-- discord / chat - optional -->
       </div>
       <!-- dialog -->
