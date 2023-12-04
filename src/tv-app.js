@@ -44,12 +44,62 @@ export class TvApp extends LitElement {
         margin: 16px;
         padding: 16px;
       }
+      .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .left-item {
+        grid-column: 1;
+        margin-top: 50px;
+        width: 900px;
+        height: 400px;
+      }
+
+      .right-item {
+        grid-column: 2;
+        width: 150px;
+        text-align: center;
+        margin-left: 100px;
+        margin-top: 30px;
+        height: 90vh;
+        overflow-y: auto;
+      }
+
+      .button-wrapper{
+        display: flex;
+        gap: 500px;
+      }
+
+      .next-button {
+        font-size: 20px;
+        height: 50px;
+        width: 200px;
+      }
+      .previous-button {
+        font-size: 20px;
+        height: 50px;
+        width: 200px;
+      }
+
       `
     ];
   }
   // LitElement rendering template of your element
   render() {
     return html`
+      <div class ="container">
+        <div class ="grid-item">
+          <div class = "left-item">
+                 <!-- video -->
+          <video-player 
+          source="https://youtu.be/QJMBhXjtaYU" accent-color="red" dark track="https://haxtheweb.org/files/HAXshort.vtt">
+        </video-player>
+        <tv-channel title="HAX: Wordpress Killer" presenter="Bryan Ollendyke">
+   Lecture Slide Info
+  </tv-channel>
+    </div>
+  </div>
+    <div class = "right-item">
       <h2>${this.name}</h2>
       ${
         this.listings.map(
@@ -62,30 +112,29 @@ export class TvApp extends LitElement {
               @click="${this.itemClick}"
             >
             </tv-channel>
+
           `
         )
       }
       <div>
       ${this.activeItem.name}
       ${this.activeItem.description}
-        <!-- video -->
-        
-      <div style="width: 1000px; height: 400px;">
-        <video-player 
-          source="https://youtu.be/QJMBhXjtaYU" 
-          accent-color="red" 
-          dark 
-          track="https://haxtheweb.org/files/HAXshort.vtt"
-        >
-        </video-player>
-      </div>
+
         <!-- discord / chat - optional -->
       </div>
+    </div>
+    </div>
+    
       <!-- dialog -->
       <sl-dialog label="Dialog" class="dialog">
       ${this.activeItem.title}
         <sl-button slot="footer" variant="primary" @click="${this.closeDialog}">Close</sl-button>
       </sl-dialog>
+
+      <div class = "button-wrapper">
+        <button class = "previous-button"> Previous Slide </button>
+        <button class = "next-button"> Next Slide </button>
+    </div>
     `;
   }
 

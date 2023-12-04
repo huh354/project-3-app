@@ -7,6 +7,17 @@
   <meta name="Description" content="TV Station application">
   <base href="/">
 
+
+  <script>
+    window.__appCDN = "https://cdn.webcomponents.psu.edu/cdn/";
+  </script>
+  <script src="https://cdn.webcomponents.psu.edu/cdn/build.js"></script>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.11.2/cdn/themes/light.css" />
+<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.11.2/cdn/shoelace-autoloader.js"></script>
+
+
+  
   <script>
     window.__appCDN = "https://cdn.webcomponents.psu.edu/cdn/";
   </script>
@@ -28,6 +39,13 @@
     tv-channel {
       margin: 100px;
     }
+    tv-app {
+      display: grid;
+      gap: 10px;
+      margin-left: 200px;
+     
+
+    }
   </style>
   <title>tv-station</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.11.2/cdn/themes/light.css" />
@@ -40,20 +58,9 @@
 
   
   
-  <tv-app name="HAX:TV"></tv-app>
+  <tv-app name="Slides"></tv-app>
  
-  <tv-channel title="HAX: Wordpress Killer" presenter="Bryan Ollendyke">
-    <p><strong>Lecture Slide Info:</strong>
-    </p>
-    <sl-button>Previous Slide</sl-button>
-    <sl-button>Next Slide</sl-button>
-    <sl-button>Slide 1</sl-button>
-    <sl-button>Slide 2</sl-button>
-    <sl-button>Slide 3</sl-button>
-    <sl-button>Slide 4
-    
-    </sl-button>
-  </tv-channel>
+ 
   <script type="module">
     import "./src/tv-app.js";
     import "./src/tv-channel.js";
