@@ -92,10 +92,10 @@ export class TvApp extends LitElement {
           <div class = "left-item">
                  <!-- video -->
           <video-player 
-          source="https://youtu.be/QJMBhXjtaYU" accent-color="red" dark track="https://haxtheweb.org/files/HAXshort.vtt">
+          source="https://www.youtube.com/watch?v=B9s5zRrDCYo&ab_channel=RedLeopardVideos" accent-color="red" dark track="https://haxtheweb.org/files/HAXshort.vtt">
         </video-player>
-        <tv-channel title="HAX: Wordpress Killer" presenter="Bryan Ollendyke">
-   Lecture Slide Info
+        <tv-channel title="Top 10 Pikmin Bosses" presenter="RedLeopardVideos">
+        The boss fights in the Pikmin series are classics. Today I want to spend sometime celebrating how great these bosses are by counting down my Top 10 Favorite Pikmin Bosses. Remember, this is my opinion, so don't get too mad if one of your favorite bosses doesn't appear on my list. I hope that you enjoy this video!
   </tv-channel>
     </div>
   </div>
@@ -110,6 +110,7 @@ export class TvApp extends LitElement {
               presenter="${item.metadata.author}"
               description="${item.description}"
               @click="${this.itemClick}"
+              timecode = "${item.metadata.timecode}"
             >
             </tv-channel>
 
@@ -145,13 +146,8 @@ export class TvApp extends LitElement {
 
   itemClick(e) {
     console.log(e.target);
-    this.activeItem = {
-      title: e.target.title,
-      id: e.target.id,
-      description: e.target.description,
-    };
-    const dialog = this.shadowRoot.querySelector('.dialog');
-    dialog.show();
+    this.shadowRoot.querySelector('video-player').shadowRoot.querySelector('a11y-media-player').play()
+    this.shadowRoot.querySelector('video-player').shadowRoot.querySelector('a11y-media-player').seek(e.target.timecode)
   }
 
   // LitElement life cycle for when any property changes

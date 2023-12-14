@@ -25,10 +25,12 @@ export class TvChannel extends LitElement {
       :host {
         display: inline-flex;
       }
+      
       .wrapper {
         padding: 16px;
         background-color: #eeeeee;
       }
+      
     `;
   }
   // LitElement rendering template of your element
